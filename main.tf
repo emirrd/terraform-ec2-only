@@ -12,8 +12,17 @@ terraform {
   }
 }
 
+provider "aws" {
+  profile = "default"
+  region  = "eu-central-1"
+}
+
 resource "aws_instance" "test-instance" {
   ami           = var.ami
   instance_type = var.instance_type
+
+  tags = {
+    "Name" = "FirstEC2withTerraform"
+  }
 
 }
